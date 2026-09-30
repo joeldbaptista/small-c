@@ -42,15 +42,17 @@ when MASM runs, because the emitted assembly includes them.
 | `pointers.c` | Pointer arithmetic, and how int pointers are scaled |
 | `asm.c` | `#asm` blocks and the calling convention |
 | `fileio.c` | `fopen()`, `fgets()`, `fprintf()`, `fclose()` |
+| `c99.c` | C99 function definitions and prototypes |
 
 ## Style
 
 These files follow `STYLE.md` like the rest of the repo, and
 `make checkstyle` in the parent directory covers them.
 
-There is one deliberate exception. Small-C has no prototypes, so
-function definitions stay in K&R form, with the parameter types between
-the argument list and the opening brace:
+The eight original examples keep K&R definitions on purpose, to show
+the language as Small-C first defined it. That is the one deviation
+from `STYLE.md`, and the parameter types sit between the argument list
+and the opening brace:
 
     show(label) char *label;
     {
@@ -59,6 +61,7 @@ the argument list and the opening brace:
 
 `clang-format` handles that shape correctly, so the brace still lands
 on its own line and the function name still starts at column zero.
+`c99.c` needs no exception at all, and follows `STYLE.md` in full.
 
 In `asm.c` the `#asm` blocks are fenced with `clang-format off`, so the
 8088 assembly inside them is left exactly as written. Those fences are
@@ -69,9 +72,14 @@ C comments, so Small-C strips them and they never reach the output.
 Small-C is a subset of C, not C itself. These are the rules that catch
 people out, and the list is complete for what these examples rely on.
 
-Functions use K&R definitions, and there are no prototypes:
+Functions may use K&R definitions, which is all the original Small-C
+accepted:
 
     add(a, b) int a, b; { return a + b; }
+
+This compiler also accepts C99 definitions and prototypes, so the two
+forms can be mixed in one file. See `c99.c`. Parameter types are
+recorded but calls are not checked against them.
 
 There are no structs, unions, enums or typedefs. There is no
 `unsigned`, no `long`, no `float` and no `double`. An `int` is 16 bits

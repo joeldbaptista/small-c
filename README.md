@@ -71,8 +71,9 @@ This applies `.clang-format` in place. It does not wrap long lines, so
 
 `prolog.h` and `epilog.h` must be present when MASM runs, since the
 emitted assembly includes them. Programs must be written in the Small-C
-subset, which is what `cc86` parses: K&R declarations, no prototypes,
-no structs, no unsigned, and 16-bit ints.
+subset, which is what `cc86` parses: no structs, no unsigned, and
+16-bit ints. Function definitions may be written in either K&R or C99
+form, and prototypes are accepted; see `examples/c99.c`.
 
 Options: `-m` monitor function headers, `-a` audible alarm on errors,
 `-p` pause on errors, `-l1`/`-l2` list source to stdout or stderr, and

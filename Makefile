@@ -6,7 +6,6 @@
 
 CC      = cc
 CFLAGS  = -std=c99 -O2 -Wall -Wextra -pedantic
-PREFIX  = /usr/local
 
 OBJ = cc1.o cc11.o cc12.o cc13.o cc21.o cc22.o cc31.o cc32.o cc33.o \
       cc41.o cc42.o
@@ -51,8 +50,4 @@ clean:
 	rm -f cc86 $(OBJ)
 	$(MAKE) -C examples clean
 
-install: cc86
-	install -d $(DESTDIR)$(PREFIX)/bin
-	install -m 755 cc86 $(DESTDIR)$(PREFIX)/bin/cc86
-
-.PHONY: all checkstyle format clean install
+.PHONY: all checkstyle format clean
