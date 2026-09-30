@@ -1,0 +1,6 @@
+# build artefacts
+cc86
+*.o
+
+# compiler output
+*.mac
