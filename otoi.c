@@ -1,0 +1,24 @@
+/*
+ * Convert an unsigned octal string to the integer nbr.
+ * Returns the field size, else ERR on error.
+ */
+
+#include "clib.h"
+
+int
+otoi(char *octstr, int *nbr)
+{
+	int d, t;
+
+	d = 0;
+	*nbr = 0;
+	while (*octstr >= '0' && *octstr <= '7') {
+		t = *nbr;
+		t = (t << 3) + (*octstr++ - '0');
+		if (t >= 0 && *nbr < 0)
+			return ERR;
+		d++;
+		*nbr = t;
+	}
+	return d;
+}
